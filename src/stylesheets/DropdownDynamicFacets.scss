@@ -1,0 +1,26 @@
+.CoveoDynamicFacet.DropDownFacet  {
+  width:30%;
+  float:left;
+}
+.AfterDropDownFacet {
+  clear:both;
+}
+.DropDownFacet.coveo-dynamic-facet-collapsed .coveo-dynamic-facet-values{
+    box-shadow: none;
+}
+.DropDownFacet .coveo-dynamic-facet-collapsed-values {
+  display: none;
+}
+.DropDownFacet .coveo-dynamic-facet-header {
+  border-bottom: none;
+}
+.DropDownFacet .coveo-combobox-values {
+  z-index: 1000;
+}
+.DropDownFacet .coveo-dynamic-facet-values {
+  position: absolute;
+  width: 250px;
+  z-index: 999;
+  background-color: white;
+  box-shadow: 0px 0px 1px 1px lightgray;
+}
