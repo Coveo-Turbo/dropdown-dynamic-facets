@@ -1,26 +1,90 @@
-.CoveoDynamicFacet.DropDownFacet  {
+.CoveoDynamicFacet.DropDownFacet, .CoveoFacet.DropDownFacet  {
   width:30%;
   float:left;
+  margin: 0;
+  border: none;
 }
 .AfterDropDownFacet {
   clear:both;
 }
-.DropDownFacet.coveo-dynamic-facet-collapsed .coveo-dynamic-facet-values{
+.DropDownFacet.coveo-dynamic-facet-collapsed .coveo-dynamic-facet-values, .DropDownFacet.coveo-facet-collapsed .coveo-facet-values{
     box-shadow: none;
 }
-.DropDownFacet .coveo-dynamic-facet-collapsed-values {
+.DropDownFacet .coveo-dynamic-facet-collapsed-values, .DropDownFacet .coveo-facet-collapsed-values {
   display: none;
 }
-.DropDownFacet .coveo-dynamic-facet-header {
+.DropDownFacet .coveo-dynamic-facet-header, .DropDownFacet .coveo-facet-header {
   border-bottom: none;
+  padding: 8px 0;
+  background: none;
+}
+.DropDownFacet .coveo-facet-header-eraser {
+  display: none;
+}
+div.CoveoFacet.DropDownFacet.coveo-active.coveo-facet-collapsed > ul {
+  display: none;
+}
+.DropDownFacet .coveo-facet-header-title {
+  margin: 0;
+    font-size: 15px;
+    color: #0059b3;
+    font-weight: bold;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-transform: capitalize;
+    -webkit-flex-grow: 1;
+    -moz-flex-grow: 1;
+    flex-grow: 1;
 }
 .DropDownFacet .coveo-combobox-values {
   z-index: 1000;
 }
-.DropDownFacet .coveo-dynamic-facet-values {
+.DropDownFacet .coveo-dynamic-facet-values, .DropDownFacet .coveo-facet-values {
   position: absolute;
   width: 250px;
   z-index: 999;
   background-color: white;
   box-shadow: 0px 0px 1px 1px lightgray;
+}
+
+.CoveoFacet.DropDownFacet {
+  cursor: pointer;
+
+  .coveo-facet-header:hover {
+      /*background: #d5d6d7;*/
+  }
+
+  .coveo-facet-header-settings-section:after {
+    content: '';
+    background: url(/up.png);
+    width: 16px;
+    height: 14px;
+    background-size: 12px;
+    background-position: bottom;
+    color: #4a4a4a;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    -webkit-transform: none;
+    transform: none;
+  
+}
+
+  &.coveo-facet-collapsed {
+      .coveo-facet-header-settings-section:after {
+        background: url(/down.png);
+        -moz-transform: none;
+        -webkit-transform: none;
+        transform: none;
+        width: 16px;
+        height: 14px;
+        background-size: 12px;
+        background-position: bottom;
+        color: #4a4a4a;
+        background-repeat: no-repeat;
+        cursor: pointer;
+        -webkit-transform: none;
+        transform: none;
+      }
+  }
 }

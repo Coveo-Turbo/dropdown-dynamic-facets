@@ -1,4 +1,4 @@
-import { Component, IComponentBindings, ComponentOptions, QueryEvents, InitializationEvents, IQuerySuccessEventArgs, IInitializationEventArgs, IQuery } from 'coveo-search-ui';
+import { Component, IComponentBindings, ComponentOptions, QueryEvents, InitializationEvents, IQuerySuccessEventArgs, IInitializationEventArgs, IQuery, $$, Facet } from 'coveo-search-ui';
 import { lazyComponent } from '@coveops/turbo-core';
 
 export interface IDropdownDynamicFacetsOptions {}
@@ -13,7 +13,41 @@ export class DropdownDynamicFacets extends Component {
         this.options = ComponentOptions.initComponentOptions(element, DropdownDynamicFacets, options);
         this.bind.onRootElement(QueryEvents.deferredQuerySuccess, (args: IQuerySuccessEventArgs) => this.handleQuery(args));
         this.bind.onRootElement(InitializationEvents.afterInitialization, (arg: IInitializationEventArgs) => this.handleInit(arg));
+        this.bind.onRootElement(InitializationEvents.afterComponentsInitialization, (arg: IInitializationEventArgs) => this.handleBeforeInit(arg));
     
+    }
+
+    //Needed for the normal Facets, which do not have expand by default enabled
+    private handleBeforeInit(arg: IInitializationEventArgs) {
+      this.initializeCollapsibleFacets();
+    }
+    public toggleFacet(this: Facet) {
+      if ($$(this.element).hasClass('coveo-facet-collapsed')) {
+        this.expand();
+      } else {
+        this.collapse();
+      }
+    }
+  
+    private hookOnFacetCreation(handler: any) {
+      const originalCreateDom = Coveo.Facet.prototype.createDom;
+      Coveo.Facet.prototype.createDom = function(this: Facet) {
+        originalCreateDom.call(this);
+        handler.call(this);
+      };
+    }
+  
+    public initializeCollapsibleFacets() {
+      var _this = this;
+      this.hookOnFacetCreation(function(this: Facet) {
+        if (this.element.dataset.dropdown === 'true') {
+          const facetElement = $$(this.element);
+          facetElement.addClass('DropDownFacet');
+          const title = facetElement.findClass('coveo-facet-header')[0];
+          $$(title).on('click', () => _this.toggleFacet.call(this));
+  
+        }
+      });
     }
 
     private handleQuery( args:IQuerySuccessEventArgs) {
@@ -23,11 +57,12 @@ export class DropdownDynamicFacets extends Component {
     }
 
     private handleInit( args: IInitializationEventArgs){
+      //this.handleBeforeInit();
       this.collapse();
     }
 
     private collapse(){
-      let allFacets = document.querySelectorAll(".CoveoDynamicFacet");
+      let allFacets = document.querySelectorAll(".CoveoDynamicFacet,.CoveoFacet");
       allFacets.forEach((facet) => {
         //Check if attribute for dropdown is there
         let dropdown= facet.getAttribute('data-dropdown');

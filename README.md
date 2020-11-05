@@ -1,7 +1,7 @@
-# DropdownDynamicFacets
+# DropdownDynamicFacets, DropdownFacets
 
-Will create dropdown facets for DynamicFacets.
-Usage: add `data-dropdown="true"` to the Facet definition like: `<div class="CoveoDynamicFacet" data-dropdown="true" data-title="Category" data-field="@category" data-tab="All"></div>`.
+Will create dropdown facets for DynamicFacets or Facets.
+Usage: add `data-dropdown="true"` to the Facet definition like: `<div class="CoveoDynamicFacet" data-dropdown="true" data-title="Category" data-field="@category" data-tab="All"></div>` or: `<div class="CoveoFacet" data-dropdown="true" data-title="Category" data-field="@category" data-tab="All"></div>`.
 
 Disclaimer: This component was built by the community at large and is not an official Coveo JSUI Component. Use this component at your own risk.
 
@@ -43,7 +43,7 @@ export * from '@coveops/dropdown-dynamic-facets'
 
 5. Include the component in your template as follows:
 
-Place the component in your markup:
+Place the component in your markup (when using Dynamic Facets):
 
 ```html
 <div class="CoveoDropdownDynamicFacets"></div>
@@ -52,8 +52,20 @@ Place the component in your markup:
   <div class="CoveoResultList AfterDropDownFacet" data-layout="list" data-wait-animation="fade" data-auto-select-fields-to-include="true">
 
 ```
+Place the component in your markup (when using normal Facets):
 
-Put `AfterDropDownFacet` class at the component right after the last DynamicFacet.
+```html
+<div class="CoveoDropdownDynamicFacets"></div>
+  <div class="CoveoFacet" data-dropdown="true" data-enable-settings="false" data-enable-more-less="false"
+            data-enable-facet-search="false" data-title="Category" data-field="@category" data-tab="All"></div>
+  <div class="CoveoFacet" data-dropdown="true" data-enable-settings="false" data-enable-more-less="false"
+            data-enable-facet-search="false" data-title="Brand" data-field="@brand" data-tab="All"></div>
+  <div class="CoveoResultList AfterDropDownFacet" data-layout="list" data-wait-animation="fade" data-auto-select-fields-to-include="true">
+
+```
+Make sure to add `data-enable-settings="false" data-enable-more-less="false"
+            data-enable-facet-search="false"` to each `CoveoFacet`.
+Put `AfterDropDownFacet` class at the component right after the last Facet.
 
 ## Extending
 

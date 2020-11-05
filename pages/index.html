@@ -40,6 +40,8 @@
     <div id="search" class="CoveoSearchInterface" data-enable-history="true" data-pipeline="BBQs">
         <!-- <div class="CoveoFolding"></div> -->
         <div class="CoveoAnalytics"></div>
+        <div class="CoveoDropdownDynamicFacets"></div>
+
         <div class="coveo-tab-section">
           <a class="CoveoTab" data-id="All" data-caption="All Content"></a>
         </div>
@@ -76,9 +78,9 @@
             </div>
             <div class="CoveoHiddenQuery"></div>
             <div class="CoveoErrorReport" data-pop-up="false"></div>
-            <div class="CoveoDropdownDynamicFacets"></div>
             <div class="CoveoDynamicFacet" data-dropdown="true" data-title="Category" data-field="@category" data-tab="All"></div>
-            <div class="CoveoDynamicFacet" data-dropdown="true" data-title="Brand" data-field="@brand" data-tab="All"></div>
+            <div class="CoveoFacet" data-dropdown="true" data-enable-settings="false" data-enable-more-less="false"
+            data-enable-facet-search="false" data-title="Brand" data-field="@brand" data-tab="All"></div>
 
             <div class="CoveoResultList AfterDropDownFacet" data-layout="list" data-wait-animation="fade" data-auto-select-fields-to-include="true">
               <script id="Default" class="result-template" type="text/html" data-layout="list"><div class="coveo-result-frame">
